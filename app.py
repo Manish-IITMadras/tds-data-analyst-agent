@@ -1,5 +1,5 @@
-
 import os
+import uvicorn
 import networkx as nx
 import re
 import json
@@ -712,7 +712,10 @@ async def analyze_get_info():
 
     })
 
+
+
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
+    port = int(os.environ.get("PORT", 8000))  # Use Railway's port if set
+    uvicorn.run("app:app", host="0.0.0.0", port=port)
+
 
